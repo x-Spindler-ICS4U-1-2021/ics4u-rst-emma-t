@@ -2,11 +2,11 @@ package rst;
 
 public class Character {
 	
-	private String name, colour, hat, markings;
+	private String name, colour, size, hat, markings;
 	private int age;
 
-	public Character(String fishName, int fishAge, String fishColour, String fishHat, String fishMarkings) {
-		
+	//public Character(String fishName, int fishAge, String fishSize, String fishColour, String fishHat, String fishMarkings) {
+	public Character(String characteristics) {
 		
 	}
 	
@@ -17,6 +17,11 @@ public class Character {
 	
 	public int getAge() {
 		return age;
+		
+	}
+	
+	public String getSize() {
+		return size;
 		
 	}
 	
