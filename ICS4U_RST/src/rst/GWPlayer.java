@@ -1,8 +1,10 @@
 package rst;
 
+import java.util.Optional;
+
 public class GWPlayer {
 	
-	private String characterDisplay [][] = new String [4][3];
+	//private String characterDisplay [] = new String [12];
 	//TODO static or private
 	private final String characteristics [] = {"RNSL", "RNSS", "RNML", "RNMS", "RNLL", "RNLS", "RFSL", "RFSS", "RFML", 
 			"RFMS", "RFLL", "RFLS", "RBSL", "RBSS", "RBML", "RBMS", "RBLL", "RBLS", "YNSL", "YNSS", "YNML", "YNMS",
@@ -10,7 +12,7 @@ public class GWPlayer {
 			"YBLS", "BNSL", "BNSS", "BNML", "BNMS", "BNLL", "BNLS", "BFSL", "BFSS", "BFML", "BFMS", "BFLL", "BFLS",
 			"BBSL", "BBSS", "BBML", "BBMS", "BBLL", "BBLS"};
 	private String characters[] = new String [12];
-	private Character charactersCharacteristics[];
+	private Character charactersCharacteristics[] = new Character [12];
 	private boolean isCorrectGuess = false;
 	
 	public GWPlayer() {
@@ -43,30 +45,20 @@ public class GWPlayer {
 		
 	}
 	
-	public void createCharactertistics() {
-//		String characteristicsCopy [] = new String [54];
-//		Arrays.fill(characteristicsCopy, characteristics);
-//	
-//		int value;
-//		for(int i = 0; i < 12; i++) {
-//			value = (int)(Math.random()*characteristicsCopy.length);
-//			
-//			charactersCharacteristics[i] = new Character(characteristicsCopy[value]);
-//			characters[i] = characteristicsCopy[value];
-//			
-//			String temp [] = new String [characteristicsCopy.length-1];
-//			
-//			for (int x = 0, y = 0; x < characteristicsCopy.length; x++) { 
-//				
-//				if (x == value) { 
-//					continue; 
-//				} 
-//				
-//				temp[y++] = characteristicsCopy[x]; 	
-//			} 
-//			
-//			
-//		}
+	private void fileInput() {
+		
+	}
+	
+	public void createCharactertistics(String name) {
+		
+		
+		for(int i = 0; i < 12; i++) {
+			
+			charactersCharacteristics[i] = new Character(characters[i], name);
+			
+		}
+				
+		
 	}
 	
 	public String getNewClue() {
@@ -88,18 +80,26 @@ public class GWPlayer {
 		
 	}
 	
-	public String[][] display() {
+	public String[] display() {
 		
-		int i = 0;
-		
-		for (int row = 0; row < 4; row++) {
-			for (int col = 0; col < 3; col++) {
-				characterDisplay[row][col] = characters[i];
-				i++;
-			}
-		}
-		
-		return characterDisplay;
+		return characters;
 		
 	}	
+	
+	public String characteristicsDisplay(int i) {
+		
+		//TODO add Age
+		
+		String output = "";
+		
+		//for(int i = 0; i < 12; i++) {
+			
+			output = "Name: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
+					"\nHat: " + charactersCharacteristics[i].getHat() + "\nSize : " + charactersCharacteristics[i].getSize() +
+					"\nMarkings: " + charactersCharacteristics[i].getMarkings();
+			
+		//}
+		
+		return output;
+	}
 }

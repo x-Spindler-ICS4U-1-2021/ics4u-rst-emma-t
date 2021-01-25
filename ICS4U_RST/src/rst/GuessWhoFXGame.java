@@ -1,11 +1,14 @@
 package rst;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -22,7 +25,8 @@ public class GuessWhoFXGame extends Application {
 	private Button btnFish [] = new Button [12];
 	private ImageView imgFish [] = new ImageView [12];
 	
-	private String fish [][] = new String [4][3];
+	private String[] fishImagesDisplay = new String [12];
+	private String fishCharacteristicsDisplay;
 	
 	//Values needed for spacing and fonts that never change
     final int GAP = 15;
@@ -50,28 +54,28 @@ public class GuessWhoFXGame extends Application {
    		root.add(lblTitle, 0, 0, 6, 1);
    		
    		lstClues = new ListView<String>();
-    	root.add(lstClues, 4, 0, 2, 6);
-    	lstClues.setPrefWidth(100);
-    	lstClues.setPrefHeight(250);
+    	root.add(lstClues, 6, 0, 2, 7);
+    	lstClues.setPrefWidth(150);
+    	lstClues.setPrefHeight(500);
     	
     	Button btnClue = new Button("Get Clue");
-   		root.add(btnClue, 4, 6);
+   		root.add(btnClue, 6, 7, 1, 1);
    		btnClue.setPrefWidth(80);
    		btnClue.setOnAction(event -> getClue());
    		
    		Button btnSort = new Button("Sort");
    		btnSort.setPrefWidth(80);
-   		root.add(btnSort, 5, 6);
+   		root.add(btnSort, 7, 7, 1, 1);
    		btnClue.setOnAction(event -> sort());
    		
    		Button btnGuess = new Button("Make Guess");
    		btnGuess.setPrefWidth(80);
-   		root.add(btnGuess, 4, 7);
+   		root.add(btnGuess, 6, 8, 1, 1);
    		btnClue.setOnAction(event -> guess());
    		
    		Button btnEnd = new Button("End");
    		btnEnd.setPrefWidth(80);
-   		root.add(btnEnd, 5, 7);
+   		root.add(btnEnd, 7, 8, 1, 1);
    		btnClue.setOnAction(event -> end());
    		
    		charactersSetup();
@@ -80,6 +84,7 @@ public class GuessWhoFXGame extends Application {
      	Scene scene = new Scene(root);
         myStage.setTitle("Guess Who Game");
       	myStage.setScene(scene);
+      	myStage.setMaxHeight(550);
       	myStage.show();      	
 		
 	}
@@ -90,24 +95,44 @@ public class GuessWhoFXGame extends Application {
 	
 	private void charactersSetup() {
 		
-		fish = player.display();
-   		for(int i = 0; i < lblFish.length; i++) {
-   			for (int row = 0; row < 4; row++) {
-   				for (int col = 0; col < 3; col++) {
-   					lblFish[i] = new Label(fish[row][col]);
-   					imgFish[i] = new ImageView(getClass().getResource("/fish/" + fish[row][col] + ".png").toString());
-   					btnFish[i] = new Button();
-   					imgFish[i].setFitWidth(75);
-   					imgFish[i].setPreserveRatio(true);
-   					btnFish[i].setGraphic(imgFish[i]);
-   					
-   					root.add(lblFish[i], col+1, row+1);
-   					root.add(btnFish[i], col, row+1);
-   				}
-   			}
-   		}
-   		
-   		
+		int x = 0;
+		
+		fishImagesDisplay = player.display();
+		
+		for(int i = 0; i < lblFish.length; i++) {
+   			imgFish[i] = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[i] + ".png").toString());
+		}
+		
+		for (int row = 0; row < 8; row+=2) {
+			for (int col = 0; col < 6; col+=2) {
+				
+				TextInputDialog dialog = new TextInputDialog();
+				dialog.setTitle("Text Input Dialog");
+				dialog.setHeaderText("What is the name of this character?");
+				dialog.setContentText("Please enter name:");
+				dialog.setGraphic(imgFish[x]);
+
+				Optional<String> result = dialog.showAndWait();
+				if (result.isPresent()){
+				    player.createCharactertistics(result.get());
+				}
+				
+				fishCharacteristicsDisplay = player.characteristicsDisplay(x);
+					
+				lblFish[x] = new Label(fishCharacteristicsDisplay);
+				btnFish[x] = new Button();
+				imgFish[x].setFitWidth(75);
+				imgFish[x].setPreserveRatio(true);
+				btnFish[x].setGraphic(imgFish[x]);
+				
+				root.add(lblFish[x], col+1, row+1, 1, 2);
+				root.add(btnFish[x], col, row+1, 1, 2);
+				x++;
+					
+			}
+		}
+   			
+
    		
 	}
 	
