@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -13,6 +14,13 @@ import javafx.stage.Stage;
 public class GuessWhoFXGame extends Application {
 	
 	private GWPlayer player;
+	
+	//Grid pane FX layout for this program
+	private GridPane root = new GridPane();
+	
+	private Label lblFish[] = new Label [12];
+	private Button btnFish [] = new Button [12];
+	private ImageView imgFish [] = new ImageView [12];
 	
 	private String fish [][] = new String [4][3];
 	
@@ -27,10 +35,10 @@ public class GuessWhoFXGame extends Application {
 		
 		player = new GWPlayer();
 		
-		Label lblFish[] = new Label [12];
+		//Label lblFish[] = new Label [12];
     	
     	//Grid pane FX layout for this program
-    	GridPane root = new GridPane();
+    	//GridPane root = new GridPane();
     	
     	//Defines spacing
    		root.setHgap(GAP);
@@ -39,17 +47,7 @@ public class GuessWhoFXGame extends Application {
    		
    		Label lblTitle = new Label ("Tang's Guess Who \nGame!");
     	lblTitle.setFont(Font.font(LARGE_FONT));
-   		root.add(lblTitle, 0, 0, 3, 1);
-   		
-   		fish = player.display();
-   		for(int i = 0; i < lblFish.length; i++) {
-   			for (int row = 0; row < 4; row++) {
-   				for (int col = 0; col < 3; col++) {
-   					lblFish[i] = new Label(fish[row][col]);
-   					root.add(lblFish[i], col, row+1);
-   				}
-   			}
-   		}
+   		root.add(lblTitle, 0, 0, 6, 1);
    		
    		lstClues = new ListView<String>();
     	root.add(lstClues, 4, 0, 2, 6);
@@ -76,18 +74,41 @@ public class GuessWhoFXGame extends Application {
    		root.add(btnEnd, 5, 7);
    		btnClue.setOnAction(event -> end());
    		
+   		charactersSetup();
+   		
    		//Displays scene
      	Scene scene = new Scene(root);
         myStage.setTitle("Guess Who Game");
       	myStage.setScene(scene);
-      	myStage.show();
-      	
-      	
+      	myStage.show();      	
 		
 	}
 	
 	private void playGame() {
 		
+	}
+	
+	private void charactersSetup() {
+		
+		fish = player.display();
+   		for(int i = 0; i < lblFish.length; i++) {
+   			for (int row = 0; row < 4; row++) {
+   				for (int col = 0; col < 3; col++) {
+   					lblFish[i] = new Label(fish[row][col]);
+   					imgFish[i] = new ImageView(getClass().getResource("/fish/" + fish[row][col] + ".png").toString());
+   					btnFish[i] = new Button();
+   					imgFish[i].setFitWidth(75);
+   					imgFish[i].setPreserveRatio(true);
+   					btnFish[i].setGraphic(imgFish[i]);
+   					
+   					root.add(lblFish[i], col+1, row+1);
+   					root.add(btnFish[i], col, row+1);
+   				}
+   			}
+   		}
+   		
+   		
+   		
 	}
 	
 	private void getClue() {
