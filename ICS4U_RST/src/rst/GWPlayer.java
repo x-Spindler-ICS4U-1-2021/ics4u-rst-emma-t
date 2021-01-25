@@ -1,10 +1,8 @@
 package rst;
 
-import java.util.Arrays; 
-
 public class GWPlayer {
 	
-	private String characterDisplay [][];
+	private String characterDisplay [][] = new String [4][3];
 	//TODO static or private
 	private final String characteristics [] = {"RNSL", "RNSS", "RNML", "RNMS", "RNLL", "RNLS", "RFSL", "RFSS", "RFML", 
 			"RFMS", "RFLL", "RFLS", "RBSL", "RBSS", "RBML", "RBMS", "RBLL", "RBLS", "YNSL", "YNSS", "YNML", "YNMS",
@@ -92,19 +90,16 @@ public class GWPlayer {
 	
 	public String[][] display() {
 		
+		int i = 0;
 		
-		
-		for(int i = 0; i < 12; i++) {
-//			for (int row = 0; row <= 2; row++) {
-//				for (int col = 0; col <= 2; col++) {
-					characterDisplay[1][1] = characters[i];
-//				}
-//			}
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 3; col++) {
+				characterDisplay[row][col] = characters[i];
+				i++;
+			}
 		}
 		
 		return characterDisplay;
 		
-	}
-	
+	}	
 }
-
