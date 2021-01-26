@@ -64,7 +64,6 @@ public class Character {
 	}
 	
 	public String getColour() {
-		
 		return colour;
 		
 	}

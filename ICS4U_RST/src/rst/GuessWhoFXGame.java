@@ -3,6 +3,7 @@ package rst;
 import java.util.Optional;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import simpleIO.Console;
+import simpleIO.FXDialog;
 
 public class GuessWhoFXGame extends Application {
 	
@@ -33,7 +36,8 @@ public class GuessWhoFXGame extends Application {
     final int LARGE_FONT = 25;
     final int SMALL_FONT = 14;
     
-    ListView<String> lstClues;
+    private ListView<String> lstClues;
+    private int clue = 0;
 	
 	public void start(Stage myStage) throws Exception {
 		
@@ -49,7 +53,7 @@ public class GuessWhoFXGame extends Application {
    		root.setVgap(GAP);
    		root.setPadding(new Insets(GAP, GAP, GAP, GAP));
    		
-   		Label lblTitle = new Label ("Tang's Guess Who \nGame!");
+   		Label lblTitle = new Label ("Tang's Guess Who Game!");
     	lblTitle.setFont(Font.font(LARGE_FONT));
    		root.add(lblTitle, 0, 0, 6, 1);
    		
@@ -57,6 +61,8 @@ public class GuessWhoFXGame extends Application {
     	root.add(lstClues, 6, 0, 2, 7);
     	lstClues.setPrefWidth(150);
     	lstClues.setPrefHeight(500);
+    	
+    	charactersSetup();
     	
     	Button btnClue = new Button("Get Clue");
    		root.add(btnClue, 6, 7, 1, 1);
@@ -78,18 +84,12 @@ public class GuessWhoFXGame extends Application {
    		root.add(btnEnd, 7, 8, 1, 1);
    		btnClue.setOnAction(event -> end());
    		
-   		charactersSetup();
-   		
    		//Displays scene
      	Scene scene = new Scene(root);
         myStage.setTitle("Guess Who Game");
       	myStage.setScene(scene);
       	myStage.setMaxHeight(550);
       	myStage.show();      	
-		
-	}
-	
-	private void playGame() {
 		
 	}
 	
@@ -114,7 +114,7 @@ public class GuessWhoFXGame extends Application {
 
 				Optional<String> result = dialog.showAndWait();
 				if (result.isPresent()){
-				    player.createCharactertistics(result.get());
+				    player.createCharactertistics(x, result.get());
 				}
 				
 				fishCharacteristicsDisplay = player.characteristicsDisplay(x);
@@ -131,25 +131,39 @@ public class GuessWhoFXGame extends Application {
 					
 			}
 		}
-   			
-
+		
+		int value = player.correctFish();
+		ImageView imgCorrectFish = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[value] + ".png").toString());
+		imgCorrectFish.setFitWidth(75);
+		imgCorrectFish.setPreserveRatio(true);
+		root.add(imgCorrectFish, 3, 0);
    		
 	}
 	
 	private void getClue() {
-		
+		lstClues.getItems().add(player.getNewClue(clue));
+		FXDialog.print(player.getNewClue(clue));
+		clue++;
 	}
 	
 	private void sort() {
-		
+		lstClues.getItems().add(player.getNewClue(clue));
+		FXDialog.print(player.getNewClue(clue));
+		clue++;
 	}
 	
 	private void guess() {
-		
+		lstClues.getItems().add(player.getNewClue(clue));
+		FXDialog.print(player.getNewClue(clue));
+		clue++;
 	}
 	
 	private void end() {
-		
+		//TODO option to save game in file
+		//Platform.exit();
+		lstClues.getItems().add(player.getNewClue(clue));
+		FXDialog.print(player.getNewClue(clue));
+		clue++;
 	}
 	
 	public static void main(String[] args) {

@@ -19,6 +19,8 @@ public class GWPlayer {
 	private Character charactersCharacteristics[] = new Character [12];
 	private boolean isCorrectGuess = false;
 	
+	private Character correctFish;
+	
 	public GWPlayer() {
 		
 		for(int z = 0; z < 54; z++) {
@@ -39,61 +41,48 @@ public class GWPlayer {
 			arrayList.remove(value);
 		}
 		
-//		String characteristicsCopy [] = new String [54];
-//	
-//		for(int z = 0; z < 54; z++) {
-//			characteristicsCopy[z] = characteristics[z];
-//		}
-//		
-//		int value;
-//		for(int i = 0; i < 12; i++) {
-//			value = (int)(Math.random()*characteristicsCopy.length);
-//			
-//			//charactersCharacteristics[i] = new Character(characteristicsCopy[value]);
-//			characters[i] = characteristicsCopy[value];
-//			
-//			String temp [] = new String [characteristicsCopy.length-1];
-//			
-//			
-//			
-//			for (int x = 0, y = 0; x < characteristicsCopy.length; x++) { 
-//				
-//				if (x == value) { 
-//					continue; 
-//				} 
-//				
-//				temp[y++] = characteristicsCopy[x]; 
-//				
-//				for(int z = 0; z < temp.length; z++) {
-//					characteristicsCopy[z] = temp[z];
-//				}
-//				
-//				
-//			} 
-//			
-//			
-//		}
+	}
+	
+	public int correctFish() {
+		int value;
+		value = (int)(Math.random()*12);
+		
+		correctFish = charactersCharacteristics[value];
+		
+		return value;
+	}
+	
+	public void fileInput() {
 		
 	}
 	
-	private void fileInput() {
+	public void createCharactertistics(int i, String name) {
+			
+		charactersCharacteristics[i] = new Character(characters[i], name);
+			
 		
 	}
 	
-	public void createCharactertistics(String name) {
+	public String getNewClue(int clue) {
+		String output = "";
 		
-		
-		for(int i = 0; i < 12; i++) {
-			
-			charactersCharacteristics[i] = new Character(characters[i], name);
-			
+		if(clue == 0) {
+			output = "The fish's colour is " + correctFish.getColour();
 		}
-				
+		else if(clue == 1) {
+			output = "The fish's hat is " + correctFish.getHat();
+		}
+		else if(clue == 2) {
+			output = "The fish's size is " + correctFish.getSize();
+		}
+		else if(clue == 3) {
+			output = "The fish's marks are " + correctFish.getMarkings();
+		}
+		else {
+			output = "No more clues needed";
+		}
 		
-	}
-	
-	public String getNewClue() {
-		return null;
+		return output;
 		
 	}
 	
