@@ -1,6 +1,7 @@
 package rst;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GWPlayer {
 	
@@ -20,6 +21,10 @@ public class GWPlayer {
 	private boolean isCorrectGuess = false;
 	
 	private Character correctFish;
+	
+	private ArrayList<String> arrayColours = new ArrayList<String>();
+	private ArrayList<String> arrayHat = new ArrayList<String>();
+	private ArrayList<String> arraySize = new ArrayList<String>();
 	
 	public GWPlayer() {
 		
@@ -41,6 +46,12 @@ public class GWPlayer {
 			arrayList.remove(value);
 		}
 		
+		arrayColours.addAll(Arrays.asList("red", "blue", "yellow"));
+		
+		arrayHat.addAll(Arrays.asList("none", "fedora", "baseball cap"));
+		
+		arraySize.addAll(Arrays.asList("small", "medium", "large"));
+		
 	}
 	
 	public int correctFish() {
@@ -48,6 +59,10 @@ public class GWPlayer {
 		value = (int)(Math.random()*12);
 		
 		correctFish = charactersCharacteristics[value];
+		
+		arrayColours.remove(correctFish.getColour());
+		arrayHat.remove(correctFish.getHat());
+		arraySize.remove(correctFish.getSize());
 		
 		return value;
 	}
@@ -63,23 +78,74 @@ public class GWPlayer {
 		
 	}
 	
-	public String getNewClue(int clue) {
+	public String clueColour() {
+		
+		String output = "";
+
+		if(arrayColours.size() != 0) {
+			int value = (int)(Math.random()*arrayColours.size());
+		
+			output = "The fish is not " + arrayColours.get(value);
+		
+			arrayColours.remove(value);
+		}
+		else {
+			output = "No more colour clues needed";
+		}
+		
+		return output;
+		
+	}
+	
+	public String clueHat() {
+		String output = "";
+		
+		if(arrayHat.size() != 0) {
+			int value = (int)(Math.random()*arrayHat.size());
+		
+			if(arrayHat.get(value) == "none") {
+				output = "The fish has a hat";
+			}
+			else {
+				output = "The fish does not have a " + arrayHat.get(value);
+			}
+			
+			arrayHat.remove(value);
+		}
+		else {
+			output = "No more hat clues needed";
+		}
+		
+		return output;
+		
+	}
+	
+	public String clueSize() {
+		String output = "";
+		
+		if(arraySize.size() != 0) {
+			int value = (int)(Math.random()*arraySize.size());
+		
+			output = "The fish is not " + arraySize.get(value);
+		
+			arraySize.remove(value);
+		}
+		else {
+			output = "No more size clues needed";
+		}
+		
+		return output;
+		
+	}
+	
+	public String clueMarkings(int clue) {
 		String output = "";
 		
 		if(clue == 0) {
-			output = "The fish's colour is " + correctFish.getColour();
-		}
-		else if(clue == 1) {
-			output = "The fish's hat is " + correctFish.getHat();
-		}
-		else if(clue == 2) {
-			output = "The fish's size is " + correctFish.getSize();
-		}
-		else if(clue == 3) {
-			output = "The fish's marks are " + correctFish.getMarkings();
+			output = "The fish has " + correctFish.getMarkings();
 		}
 		else {
-			output = "No more clues needed";
+			output = "No more markings clues needed";
 		}
 		
 		return output;

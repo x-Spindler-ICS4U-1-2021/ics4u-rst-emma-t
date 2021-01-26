@@ -4,9 +4,15 @@ import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
@@ -67,22 +73,47 @@ public class GuessWhoFXGame extends Application {
     	Button btnClue = new Button("Get Clue");
    		root.add(btnClue, 6, 7, 1, 1);
    		btnClue.setPrefWidth(80);
-   		btnClue.setOnAction(event -> getClue());
+   		EventHandler<ActionEvent> buttonClue = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+            	getClue();
+            } 
+        }; 
+        btnClue.setOnAction(buttonClue);
+        
    		
    		Button btnSort = new Button("Sort");
    		btnSort.setPrefWidth(80);
    		root.add(btnSort, 7, 7, 1, 1);
-   		btnClue.setOnAction(event -> sort());
+   		EventHandler<ActionEvent> buttonSort = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+            	sort();
+            } 
+        }; 
+        btnSort.setOnAction(buttonSort);
    		
    		Button btnGuess = new Button("Make Guess");
    		btnGuess.setPrefWidth(80);
    		root.add(btnGuess, 6, 8, 1, 1);
-   		btnClue.setOnAction(event -> guess());
+   		EventHandler<ActionEvent> buttonGuess = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+            	guess();
+            } 
+        }; 
+        btnGuess.setOnAction(buttonGuess);
    		
    		Button btnEnd = new Button("End");
    		btnEnd.setPrefWidth(80);
    		root.add(btnEnd, 7, 8, 1, 1);
-   		btnClue.setOnAction(event -> end());
+   		EventHandler<ActionEvent> buttonEnd = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+            	end();
+            } 
+        }; 
+        btnEnd.setOnAction(buttonEnd);
    		
    		//Displays scene
      	Scene scene = new Scene(root);
@@ -141,29 +172,54 @@ public class GuessWhoFXGame extends Application {
 	}
 	
 	private void getClue() {
-		lstClues.getItems().add(player.getNewClue(clue));
-		FXDialog.print(player.getNewClue(clue));
-		clue++;
+		
+		Alert clueType = new Alert(AlertType.CONFIRMATION);
+		clueType.setTitle("Choose Clue Type Dialog");
+		clueType.setHeaderText("Please choose a characteristic to get a clue about");
+
+		ButtonType btnColour = new ButtonType("Colour");
+		ButtonType btnHat = new ButtonType("Hat");
+		ButtonType btnSize = new ButtonType("Size");
+		ButtonType btnMarkings = new ButtonType("Markings");
+		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+		clueType.getButtonTypes().setAll(btnColour, btnHat, btnSize, btnMarkings, buttonTypeCancel);
+
+		Optional<ButtonType> result = clueType.showAndWait();
+		if (result.get() == btnColour){
+			lstClues.getItems().add(player.clueColour());
+		} else if (result.get() == btnHat) {
+			lstClues.getItems().add(player.clueHat());
+		} else if (result.get() == btnSize) {
+			lstClues.getItems().add(player.clueSize());
+		} else if (result.get() == btnMarkings) {
+			lstClues.getItems().add(player.clueMarkings(clue));
+			clue++;
+		} else {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Error Dialog");
+			error.setHeaderText("No clue type selected");
+
+			error.showAndWait();
+		}
+		
+		
+		
+
 	}
 	
 	private void sort() {
-		lstClues.getItems().add(player.getNewClue(clue));
-		FXDialog.print(player.getNewClue(clue));
-		clue++;
+		
 	}
 	
 	private void guess() {
-		lstClues.getItems().add(player.getNewClue(clue));
-		FXDialog.print(player.getNewClue(clue));
-		clue++;
+		
 	}
 	
 	private void end() {
 		//TODO option to save game in file
-		//Platform.exit();
-		lstClues.getItems().add(player.getNewClue(clue));
-		FXDialog.print(player.getNewClue(clue));
-		clue++;
+		Platform.exit();
+		
 	}
 	
 	public static void main(String[] args) {
