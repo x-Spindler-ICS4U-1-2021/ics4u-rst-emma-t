@@ -1,5 +1,7 @@
 package rst;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,7 +28,7 @@ public class GWPlayer {
 	private ArrayList<String> arrayHat = new ArrayList<String>();
 	private ArrayList<String> arraySize = new ArrayList<String>();
 	
-	public GWPlayer() {
+	public GWPlayer() throws FileNotFoundException {
 		
 		for(int z = 0; z < 54; z++) {
 			arrayList.add(characteristics[z]);
@@ -67,7 +69,21 @@ public class GWPlayer {
 		return value;
 	}
 	
-	public void fileInput() {
+	public void fileInput() throws FileNotFoundException {
+		
+		PrintWriter file = new PrintWriter(new PrintWriter("data/GuessWho.txt"));
+		file.println("Current characters");
+		
+		for(int i = 0; i < 12; i++) {
+			//Prints entire array
+			//TODO print int charactersCharacteristics name and characteristics
+			file.println("Name: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
+					"\nHat: " + charactersCharacteristics[i].getHat() + "\nSize : " + charactersCharacteristics[i].getSize() +
+					"\nMarkings: " + charactersCharacteristics[i].getMarkings());
+		}
+		
+		file.println("--------------------------------------");
+		file.close();
 		
 	}
 	

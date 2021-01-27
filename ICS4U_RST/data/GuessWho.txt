@@ -1,0 +1,62 @@
+Current characters
+Name: test
+Colour: blue
+Hat: none
+Size : small
+Markings: spots
+Name: test
+Colour: red
+Hat: none
+Size : medium
+Markings: stripes
+Name: test
+Colour: blue
+Hat: baseball cap
+Size : medium
+Markings: stripes
+Name: test
+Colour: blue
+Hat: fedora
+Size : small
+Markings: stripes
+Name: test
+Colour: blue
+Hat: baseball cap
+Size : large
+Markings: stripes
+Name: test
+Colour: yellow
+Hat: baseball cap
+Size : small
+Markings: stripes
+Name: test
+Colour: red
+Hat: fedora
+Size : large
+Markings: stripes
+Name: test
+Colour: yellow
+Hat: none
+Size : small
+Markings: stripes
+Name: test
+Colour: blue
+Hat: fedora
+Size : medium
+Markings: stripes
+Name: test
+Colour: yellow
+Hat: none
+Size : medium
+Markings: spots
+Name: test
+Colour: blue
+Hat: none
+Size : large
+Markings: stripes
+Name: test
+Colour: blue
+Hat: none
+Size : small
+Markings: stripes
+--------------------------------------

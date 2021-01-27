@@ -1,5 +1,6 @@
 package rst;
 
+import java.io.FileNotFoundException;
 import java.util.Optional;
 
 import javafx.application.Application;
@@ -16,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -45,6 +47,11 @@ public class GuessWhoFXGame extends Application {
     private ListView<String> lstClues;
     private int clue = 0;
 	
+    private static final Image imgX = new Image(GuessWhoFXGame.class.getResource("/X.png").toString());
+    
+    private boolean isRemoving = false;
+    private boolean isGuessing = false;
+    
 	public void start(Stage myStage) throws Exception {
 		
 		player = new GWPlayer();
@@ -124,7 +131,7 @@ public class GuessWhoFXGame extends Application {
 		
 	}
 	
-	private void charactersSetup() {
+	private void charactersSetup() throws FileNotFoundException {
 		
 		int x = 0;
 		
@@ -156,6 +163,12 @@ public class GuessWhoFXGame extends Application {
 				imgFish[x].setPreserveRatio(true);
 				btnFish[x].setGraphic(imgFish[x]);
 				
+				int temp = x;
+				
+				
+				btnFish[x].setOnAction(event -> fishSelected(event, temp));
+				
+				
 				root.add(lblFish[x], col+1, row+1, 1, 2);
 				root.add(btnFish[x], col, row+1, 1, 2);
 				x++;
@@ -168,7 +181,24 @@ public class GuessWhoFXGame extends Application {
 		imgCorrectFish.setFitWidth(75);
 		imgCorrectFish.setPreserveRatio(true);
 		root.add(imgCorrectFish, 3, 0);
+		
+		player.fileInput();
    		
+	}
+	
+	private void fishSelected(ActionEvent event, int x) {
+		
+		if(isRemoving == true) {
+			btnFish[x] = (Button) event.getSource();
+		
+			ImageView temp = new ImageView(imgX);
+			temp.setFitWidth(75);
+			temp.setPreserveRatio(true);
+		
+			btnFish[x].setGraphic(temp);
+		}
+		
+
 	}
 	
 	private void getClue() {
@@ -203,7 +233,7 @@ public class GuessWhoFXGame extends Application {
 			error.showAndWait();
 		}
 		
-		
+		isRemoving = true;
 		
 
 	}
