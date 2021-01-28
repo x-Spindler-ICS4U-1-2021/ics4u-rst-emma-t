@@ -1,174 +1,158 @@
 Current characters
 
-Name: l
+Name: 
+Colour: red
+Hat: none
+Size : medium
+Markings: spots
+
+Name: 
+Colour: blue
+Hat: baseball cap
+Size : small
+Markings: spots
+
+Name: 
+Colour: red
+Hat: fedora
+Size : medium
+Markings: spots
+
+Name: 
 Colour: yellow
+Hat: none
+Size : large
+Markings: stripes
+
+Name: 
+Colour: blue
+Hat: baseball cap
+Size : large
+Markings: stripes
+
+Name: 
+Colour: blue
+Hat: none
+Size : medium
+Markings: stripes
+
+Name: 
+Colour: red
 Hat: none
 Size : small
 Markings: spots
 
-Name: s
-Colour: blue
+Name: 
+Colour: yellow
+Hat: baseball cap
+Size : small
+Markings: stripes
+
+Name: 
+Colour: yellow
 Hat: fedora
 Size : medium
 Markings: stripes
 
-Name: t
-Colour: yellow
-Hat: fedora
-Size : large
-Markings: stripes
-
-Name: y
-Colour: blue
-Hat: baseball cap
-Size : small
-Markings: spots
-
-Name: u
-Colour: yellow
-Hat: baseball cap
-Size : large
-Markings: spots
-
-Name: i
-Colour: yellow
-Hat: none
-Size : small
-Markings: stripes
-
-Name: x
+Name: 
 Colour: red
 Hat: fedora
 Size : small
-Markings: spots
-
-Name: c
-Colour: yellow
-Hat: fedora
-Size : small
-Markings: spots
-
-Name: v
-Colour: red
-Hat: none
-Size : large
 Markings: stripes
 
-Name: b
-Colour: blue
-Hat: fedora
+Name: 
+Colour: yellow
+Hat: baseball cap
 Size : medium
 Markings: spots
 
-Name: g
+Name: 
+Colour: yellow
+Hat: fedora
+Size : large
+Markings: stripes
+--------------------------------------
+Clue: The fish does not have a baseball cap
+--------------------------------------
+Removed : 
+Name: 
+Colour: red
+Hat: fedora
+Size : medium
+Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: blue
+Hat: none
+Size : medium
+Markings: stripes
+--------------------------------------
+Removed : 
+Name: 
 Colour: yellow
 Hat: fedora
 Size : medium
+Markings: stripes
+--------------------------------------
+Removed : 
+Name: 
+Colour: yellow
+Hat: fedora
+Size : large
+Markings: stripes
+--------------------------------------
+Removed : 
+Name: 
+Colour: yellow
+Hat: baseball cap
+Size : medium
 Markings: spots
-
-Name: n
+--------------------------------------
+Removed : 
+Name: 
 Colour: yellow
 Hat: baseball cap
 Size : small
 Markings: stripes
 --------------------------------------
-Clue: The fish is not medium
---------------------------------------
 Removed : 
-Name: s
+Name: 
 Colour: blue
-Hat: fedora
-Size : medium
+Hat: baseball cap
+Size : large
 Markings: stripes
-
 --------------------------------------
 Removed : 
-Name: g
-Colour: yellow
-Hat: fedora
-Size : medium
-Markings: spots
-
---------------------------------------
-Removed : 
-Name: b
-Colour: blue
-Hat: fedora
-Size : medium
-Markings: spots
-
---------------------------------------
-Clue: The fish is not blue
---------------------------------------
-Removed : 
-Name: y
+Name: 
 Colour: blue
 Hat: baseball cap
 Size : small
 Markings: spots
-
---------------------------------------
-Clue: The fish is not small
 --------------------------------------
 Removed : 
-Name: l
-Colour: yellow
-Hat: none
-Size : small
-Markings: spots
-
---------------------------------------
-Removed : 
-Name: c
-Colour: yellow
-Hat: fedora
-Size : small
-Markings: spots
-
---------------------------------------
-Removed : 
-Name: n
-Colour: yellow
-Hat: baseball cap
-Size : small
-Markings: stripes
-
---------------------------------------
-Removed : 
-Name: x
+Name: 
 Colour: red
-Hat: fedora
-Size : small
-Markings: spots
-
---------------------------------------
-Clue: The fish has spots
---------------------------------------
-Removed : 
-Name: i
-Colour: yellow
 Hat: none
-Size : small
-Markings: stripes
-
+Size : medium
+Markings: spots
 --------------------------------------
 Removed : 
-Name: t
+Name: 
 Colour: yellow
-Hat: fedora
-Size : large
-Markings: stripes
-
---------------------------------------
-Removed : 
-Name: v
-Colour: red
 Hat: none
 Size : large
 Markings: stripes
-
 --------------------------------------
-Guessed correct character u
+Removed : 
+Name: 
+Colour: red
+Hat: none
+Size : small
+Markings: spots
+--------------------------------------
+Guessed incorrect character ()
 --------------------------------------
 Sorted characters alphabetically
 --------------------------------------
+Game ended. The correct fish was 

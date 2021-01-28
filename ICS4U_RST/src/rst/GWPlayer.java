@@ -1,6 +1,11 @@
 package rst;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -283,8 +288,24 @@ public class GWPlayer {
 		return output;
 	}
 	
+	public void userFile(String file) throws IOException {
+		
+		BufferedReader readFile = new BufferedReader(new FileReader("data/GuessWho.txt"));
+		PrintWriter fileOut = new PrintWriter(new BufferedWriter(new FileWriter("data/" + file + ".txt")));
+		 String line;
+
+	        while ((line = readFile.readLine()) != null) {
+	        	fileOut.println(line);
+	        }
+	        readFile.close();
+	        
+	        fileOut.println(line);
+	        
+		fileOut.close();
+	}
+	
 	public void end() {
-		file.println("Game ended");
+		file.println("Game ended. The correct fish was " + correctFish.getName());
 		file.close();
 	}
 	
