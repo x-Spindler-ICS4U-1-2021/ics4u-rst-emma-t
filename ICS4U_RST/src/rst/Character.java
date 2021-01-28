@@ -3,9 +3,7 @@ package rst;
 public class Character {
 	
 	private String name, colour, size, hat, markings;
-	private int age;
-
-	//public Character(String fishName, int fishAge, String fishSize, String fishColour, String fishHat, String fishMarkings) {
+	
 	public Character(String characteristics, String fishName) {
 		
 		if (characteristics.charAt(0) == 'R') {
@@ -50,11 +48,6 @@ public class Character {
 	
 	public String getName() {
 		return name;
-		
-	}
-	
-	public int getAge() {
-		return age;
 		
 	}
 	

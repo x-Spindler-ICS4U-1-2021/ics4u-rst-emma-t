@@ -18,15 +18,21 @@ public class GWPlayer {
 	
 	//private ArrayList arrayList = new ArrayList(); 
 	private ArrayList<String> arrayList = new ArrayList<String>();
+	private String removed []  = new String [12];
 	
 	private Character charactersCharacteristics[] = new Character [12];
-	private boolean isCorrectGuess = false;
 	
 	private Character correctFish;
 	
 	private ArrayList<String> arrayColours = new ArrayList<String>();
 	private ArrayList<String> arrayHat = new ArrayList<String>();
 	private ArrayList<String> arraySize = new ArrayList<String>();
+	
+	private PrintWriter file = new PrintWriter(new PrintWriter("data/GuessWho.txt"));
+	
+	private Character sorted [] = new Character [12];
+	
+	private int fishImageOrder [] = new int []{0,1,2,3,4,5,6,7,8,9,10,11};
 	
 	public GWPlayer() throws FileNotFoundException {
 		
@@ -47,6 +53,11 @@ public class GWPlayer {
 			
 			arrayList.remove(value);
 		}
+		
+		for(int i = 0; i < characters.length; i++) {
+			removed[i] = characters[i];
+		}
+		
 		
 		arrayColours.addAll(Arrays.asList("red", "blue", "yellow"));
 		
@@ -71,25 +82,37 @@ public class GWPlayer {
 	
 	public void fileInput() throws FileNotFoundException {
 		
-		PrintWriter file = new PrintWriter(new PrintWriter("data/GuessWho.txt"));
 		file.println("Current characters");
 		
-		for(int i = 0; i < 12; i++) {
+		for(int i = 0; i < charactersCharacteristics.length; i++) {
 			//Prints entire array
 			//TODO print int charactersCharacteristics name and characteristics
-			file.println("Name: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
+			file.println("\nName: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
 					"\nHat: " + charactersCharacteristics[i].getHat() + "\nSize : " + charactersCharacteristics[i].getSize() +
 					"\nMarkings: " + charactersCharacteristics[i].getMarkings());
 		}
 		
 		file.println("--------------------------------------");
-		file.close();
 		
 	}
+	
+	public void removed(int x) throws FileNotFoundException {
+		
+		removed[x] = "null";
+		
+		file.println("Removed : \nName: " + charactersCharacteristics[x].getName() + "\nColour: " + charactersCharacteristics[x].getColour() +
+				"\nHat: " + charactersCharacteristics[x].getHat() + "\nSize : " + charactersCharacteristics[x].getSize() +
+				"\nMarkings: " + charactersCharacteristics[x].getMarkings());
+		
+		file.println("--------------------------------------");
+		
+	}
+	
 	
 	public void createCharactertistics(int i, String name) {
 			
 		charactersCharacteristics[i] = new Character(characters[i], name);
+		
 			
 		
 	}
@@ -108,6 +131,10 @@ public class GWPlayer {
 		else {
 			output = "No more colour clues needed";
 		}
+		
+		file.println("Clue: " + output);
+		file.println("--------------------------------------");
+		
 		
 		return output;
 		
@@ -132,6 +159,9 @@ public class GWPlayer {
 			output = "No more hat clues needed";
 		}
 		
+		file.println("Clue: " + output);
+		file.println("--------------------------------------");
+		
 		return output;
 		
 	}
@@ -150,6 +180,9 @@ public class GWPlayer {
 			output = "No more size clues needed";
 		}
 		
+		file.println("Clue: " + output);
+		file.println("--------------------------------------");
+		
 		return output;
 		
 	}
@@ -164,22 +197,67 @@ public class GWPlayer {
 			output = "No more markings clues needed";
 		}
 		
+		file.println("Clue: " + output);
+		file.println("--------------------------------------");
+		
 		return output;
 		
 	}
 	
-	public void sortAlpha() {
+	public int [] sort() {
 		
+		for(int i = 0; i < 12; i++) {
+			sorted[i] = charactersCharacteristics[i];
+		}
 		
+		boolean hadSwap = true;
+		int bottom = sorted.length-1;
+		
+		do {
+			hadSwap = false;
+		
+			for(int x = 0; x < bottom; x++) {
+
+				if(sorted[x].getName().compareToIgnoreCase(sorted[x+1].getName())>0){
+					hadSwap = true;
+					
+					Character temp = sorted[x];
+					sorted[x] = sorted[x+1];
+					sorted[x+1] = temp;
+					
+					int temp2 = fishImageOrder[x];
+					fishImageOrder[x] = fishImageOrder[x+1];
+					fishImageOrder[x+1] = temp2;
+					
+				}
+			}
+			bottom = bottom - 1;
+		} while (hadSwap == true);
+		
+		for(int i = 0; i < 12; i++) {
+			charactersCharacteristics[i] = sorted[i];
+		}
+		
+		file.println("Sorted characters alphabetically");
+		file.println("--------------------------------------");
+		
+		return fishImageOrder;
 	}
 	
-	public void sortAge() {
-		
-	}
 	
-	public boolean compareGuess() {
-		return false;
-		
+	public boolean compareGuess(int x) {
+		//if(removed[x] != "null" && charactersCharacteristics[x] == correctFish) {
+		if(
+			charactersCharacteristics[x] == correctFish) {
+			file.println("Guessed correct character (" + charactersCharacteristics[x].getName() + ")");
+			file.println("--------------------------------------");
+			return true;
+		}
+		else {
+			file.println("Guessed incorrect character (" + charactersCharacteristics[x].getName() + ")");
+			file.println("--------------------------------------");
+			return false;
+		}
 	}
 	
 	public String[] display() {
@@ -204,4 +282,10 @@ public class GWPlayer {
 		
 		return output;
 	}
+	
+	public void end() {
+		file.println("Game ended");
+		file.close();
+	}
+	
 }
