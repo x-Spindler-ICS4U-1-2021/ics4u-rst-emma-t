@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class GWPlayer {
 	
 	//private String characterDisplay [] = new String [12];
-	//TODO static or private
+
 	private final String characteristics [] = {"RNSL", "RNSS", "RNML", "RNMS", "RNLL", "RNLS", "RFSL", "RFSS", "RFML", 
 			"RFMS", "RFLL", "RFLS", "RBSL", "RBSS", "RBML", "RBMS", "RBLL", "RBLS", "YNSL", "YNSS", "YNML", "YNMS",
 			"YNLL", "YNLS", "YFSL", "YFSS", "YFML", "YFMS", "YFLL", "YFLS", "YBSL", "YBSS", "YBML", "YBMS", "YBLL",
@@ -40,6 +40,11 @@ public class GWPlayer {
 	private int fishImageOrder [] = new int []{0,1,2,3,4,5,6,7,8,9,10,11};
 	
 	public GWPlayer() throws FileNotFoundException {
+		
+//		arrayList.clear();
+//		arrayColours.clear();
+//		arrayHat.clear();
+//		arraySize.clear();
 		
 		for(int z = 0; z < 54; z++) {
 			arrayList.add(characteristics[z]);
@@ -91,7 +96,7 @@ public class GWPlayer {
 		
 		for(int i = 0; i < charactersCharacteristics.length; i++) {
 			//Prints entire array
-			//TODO print int charactersCharacteristics name and characteristics
+
 			file.println("\nName: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
 					"\nHat: " + charactersCharacteristics[i].getHat() + "\nSize : " + charactersCharacteristics[i].getSize() +
 					"\nMarkings: " + charactersCharacteristics[i].getMarkings());
@@ -272,8 +277,6 @@ public class GWPlayer {
 	}	
 	
 	public String characteristicsDisplay(int i) {
-		
-		//TODO add Age
 		
 		String output = "";
 		

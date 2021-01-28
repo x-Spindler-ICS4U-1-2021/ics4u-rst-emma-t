@@ -65,6 +65,7 @@ public class GuessWhoFXGame extends Application {
       			+ " 12 fish to continue");
 		
 		player = new GWPlayer();
+		charactersSetup();
 		
     	//Defines spacing
    		root.setHgap(GAP);
@@ -83,12 +84,6 @@ public class GuessWhoFXGame extends Application {
     	Label lblCorrect = new Label("<-- This is what the correct \nfish looks like");
     	lblCorrect.setFont(Font.font(SMALL_FONT));
    		root.add(lblCorrect, 4, 0, 2, 1);
-    	
-    	fishImagesDisplay = player.display();
-    	for(int i = 0; i < 12; i++) {
-   			imgFish[i] = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[i] + ".png").toString());
-		}
-    	charactersSetup();
     	
     	int value = player.correctFish();
 		imgCorrectFish = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[value] + ".png").toString());
@@ -113,7 +108,6 @@ public class GuessWhoFXGame extends Application {
             } 
         }; 
         btnClue.setOnAction(buttonClue);
-        
    		
    		Button btnSort = new Button("Sort");
    		btnSort.setPrefWidth(80);
@@ -148,14 +142,17 @@ public class GuessWhoFXGame extends Application {
             { 
             	try {
 					end();
-				} catch (IOException e1) {
+ 			    } catch (IOException error) {
+ 			    	FXDialog.print("Exception: " + error);
+ 			    	System.exit(0);
+ 			    } catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             } 
         }; 
         btnEnd.setOnAction(buttonEnd);
-   		
+       
    		//Displays scene
      	Scene scene = new Scene(root);
         myStage.setTitle("Guess Who Game");
@@ -168,6 +165,11 @@ public class GuessWhoFXGame extends Application {
 	}
 	
 	private void charactersSetup() throws FileNotFoundException {
+		
+		fishImagesDisplay = player.display();
+    	for(int i = 0; i < 12; i++) {
+   			imgFish[i] = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[i] + ".png").toString());
+		}
 		
 		int x = 0;
 		
@@ -184,6 +186,9 @@ public class GuessWhoFXGame extends Application {
 				if (result.isPresent()){
 				    player.createCharactertistics(x, result.get());
 				}
+				else {
+					System.exit(0);
+				}
 				
 				fishCharacteristicsDisplay = player.characteristicsDisplay(x);
 					
@@ -199,8 +204,8 @@ public class GuessWhoFXGame extends Application {
 					try {
 						fishSelected(event, temp);
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						FXDialog.print("Exception: " + e);
+						System.exit(0);
 					}
 				});
 				
@@ -319,6 +324,8 @@ public class GuessWhoFXGame extends Application {
 		
 		if(isCorrect == false && removingCharacters == 12) {
 			FXDialog.print("That guess was incorrect. You lost!");
+			imgCorrectFish.setVisible(true);
+			questionMark.setVisible(false);
 		}
 		else if(isCorrect == false) {
 			FXDialog.print("That guess was incorrect. Get more clues or exit the game.");
@@ -335,7 +342,7 @@ public class GuessWhoFXGame extends Application {
 		
 	}
 	
-	private void end() throws IOException {
+	private void end() throws Exception {
 		player.end();
 		
 		if(isCorrect == false) {
@@ -351,7 +358,7 @@ public class GuessWhoFXGame extends Application {
 		
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Text Input Dialog");
-		dialog.setHeaderText("Enter a name and click OK to save game as text file");
+		dialog.setHeaderText("Enter a name and click OK to save game to your text file. \nThe game will automatically be saved to GuessWho.txt");
 		dialog.setContentText("Please enter file name to save to:");
 
 		Optional<String> result = dialog.showAndWait();
@@ -362,8 +369,49 @@ public class GuessWhoFXGame extends Application {
 		else{
 			FXDialog.print("Game save outputted to GuessWho");
 		}
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Would you like to play again?");
+		
+		ButtonType btnYes = new ButtonType("Yes");
+		ButtonType btnNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
 
-		Platform.exit();
+		alert.getButtonTypes().setAll(btnYes, btnNo); 
+				
+		Optional<ButtonType> result1 = alert.showAndWait();
+		if (result1.get() == btnYes){
+			imgCorrectFish.setVisible(false);
+			
+			for(int i = 0; i < 12; i++) {
+				lblFish[i].setText("");
+				btnFish[i].setGraphic(null);
+				imgFish[i].setImage(null);
+				
+				//String[] fishImagesDisplay = new String [12];
+			}
+			
+			clue = 0;
+			clueMessage = 0;
+		    removingCharacters = 0;
+		    isCorrect = false;
+		    lstClues.getItems().clear();
+			questionMark.setVisible(true);
+			
+			player = new GWPlayer();
+			charactersSetup();
+			
+			int value = player.correctFish();
+			imgCorrectFish = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[value] + ".png").toString());
+			imgCorrectFish.setFitWidth(75);
+			imgCorrectFish.setPreserveRatio(true);
+			imgCorrectFish.setVisible(false);
+			root.add(imgCorrectFish, 3, 0);
+			
+		} else {
+			Platform.exit();
+		}
 		
 		
 	}
