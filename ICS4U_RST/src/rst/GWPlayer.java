@@ -401,7 +401,7 @@ public class GWPlayer {
         	fileOut.println(line);
         }
 		
-		//Closer bufferedReader
+		//Close bufferedReader
         readFile.close();
         
         //Print into new file and close PrintWriter
