@@ -405,7 +405,6 @@ public class GWPlayer {
         readFile.close();
         
         //Print into new file and close PrintWriter
-        fileOut.println(line);
         fileOut.close();
 	}
 	
