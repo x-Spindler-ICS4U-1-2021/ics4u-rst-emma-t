@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GWPlayer {
-	
-	//private String characterDisplay [] = new String [12];
 
 	private final String characteristics [] = {"RNSL", "RNSS", "RNML", "RNMS", "RNLL", "RNLS", "RFSL", "RFSS", "RFML", 
 			"RFMS", "RFLL", "RFLS", "RBSL", "RBSS", "RBML", "RBMS", "RBLL", "RBLS", "YNSL", "YNSS", "YNML", "YNMS",
@@ -21,7 +19,6 @@ public class GWPlayer {
 			"BBSL", "BBSS", "BBML", "BBMS", "BBLL", "BBLS"};
 	private String characters[] = new String [12];
 	
-	//private ArrayList arrayList = new ArrayList(); 
 	private ArrayList<String> arrayList = new ArrayList<String>();
 	private String removed []  = new String [12];
 	
@@ -41,22 +38,12 @@ public class GWPlayer {
 	
 	public GWPlayer() throws FileNotFoundException {
 		
-//		arrayList.clear();
-//		arrayColours.clear();
-//		arrayHat.clear();
-//		arraySize.clear();
-		
-		for(int z = 0; z < 54; z++) {
+		for (int z = 0; z < 54; z++) {
 			arrayList.add(characteristics[z]);
 		}
-//		arrayList.add("RNSL", "RNSS", "RNML", "RNMS", "RNLL", "RNLS", "RFSL", "RFSS", "RFML", 
-//				"RFMS", "RFLL", "RFLS", "RBSL", "RBSS", "RBML", "RBMS", "RBLL", "RBLS", "YNSL", "YNSS", "YNML", "YNMS",
-//				"YNLL", "YNLS", "YFSL", "YFSS", "YFML", "YFMS", "YFLL", "YFLS", "YBSL", "YBSS", "YBML", "YBMS", "YBLL",
-//				"YBLS", "BNSL", "BNSS", "BNML", "BNMS", "BNLL", "BNLS", "BFSL", "BFSS", "BFML", "BFMS", "BFLL", "BFLS",
-//				"BBSL", "BBSS", "BBML", "BBMS", "BBLL", "BBLS");
 		
 		int value;
-		for(int i = 0; i < 12; i++) {
+		for (int i = 0; i < 12; i++) {
 			value = (int)(Math.random()*arrayList.size());
 			
 			characters[i] = arrayList.get(value);
@@ -64,7 +51,7 @@ public class GWPlayer {
 			arrayList.remove(value);
 		}
 		
-		for(int i = 0; i < characters.length; i++) {
+		for (int i = 0; i < characters.length; i++) {
 			removed[i] = characters[i];
 		}
 		
@@ -94,7 +81,7 @@ public class GWPlayer {
 		
 		file.println("Current characters");
 		
-		for(int i = 0; i < charactersCharacteristics.length; i++) {
+		for (int i = 0; i < charactersCharacteristics.length; i++) {
 			//Prints entire array
 
 			file.println("\nName: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
@@ -120,10 +107,8 @@ public class GWPlayer {
 	
 	
 	public void createCharactertistics(int i, String name) {
-			
-		charactersCharacteristics[i] = new Character(characters[i], name);
 		
-			
+		charactersCharacteristics[i] = new Character(characters[i], name);
 		
 	}
 	
@@ -131,14 +116,13 @@ public class GWPlayer {
 		
 		String output = "";
 
-		if(arrayColours.size() != 0) {
+		if (arrayColours.size() != 0) {
 			int value = (int)(Math.random()*arrayColours.size());
 		
 			output = "The fish is not " + arrayColours.get(value);
 		
 			arrayColours.remove(value);
-		}
-		else {
+		} else {
 			output = "No more colour clues needed";
 		}
 		
@@ -153,19 +137,17 @@ public class GWPlayer {
 	public String clueHat() {
 		String output = "";
 		
-		if(arrayHat.size() != 0) {
+		if (arrayHat.size() != 0) {
 			int value = (int)(Math.random()*arrayHat.size());
 		
-			if(arrayHat.get(value) == "none") {
+			if (arrayHat.get(value) == "none") {
 				output = "The fish has a hat";
-			}
-			else {
+			} else {
 				output = "The fish does not have a " + arrayHat.get(value);
 			}
 			
 			arrayHat.remove(value);
-		}
-		else {
+		} else {
 			output = "No more hat clues needed";
 		}
 		
@@ -179,14 +161,13 @@ public class GWPlayer {
 	public String clueSize() {
 		String output = "";
 		
-		if(arraySize.size() != 0) {
+		if (arraySize.size() != 0) {
 			int value = (int)(Math.random()*arraySize.size());
 		
 			output = "The fish is not " + arraySize.get(value);
 		
 			arraySize.remove(value);
-		}
-		else {
+		} else {
 			output = "No more size clues needed";
 		}
 		
@@ -200,10 +181,9 @@ public class GWPlayer {
 	public String clueMarkings(int clue) {
 		String output = "";
 		
-		if(clue == 0) {
+		if (clue == 0) {
 			output = "The fish has " + correctFish.getMarkings();
-		}
-		else {
+		} else {
 			output = "No more markings clues needed";
 		}
 		
@@ -216,7 +196,7 @@ public class GWPlayer {
 	
 	public int [] sort() {
 		
-		for(int i = 0; i < 12; i++) {
+		for (int i = 0; i < 12; i++) {
 			sorted[i] = charactersCharacteristics[i];
 		}
 		
@@ -226,9 +206,9 @@ public class GWPlayer {
 		do {
 			hadSwap = false;
 		
-			for(int x = 0; x < bottom; x++) {
+			for (int x = 0; x < bottom; x++) {
 
-				if(sorted[x].getName().compareToIgnoreCase(sorted[x+1].getName())>0){
+				if (sorted[x].getName().compareToIgnoreCase(sorted[x+1].getName())>0){
 					hadSwap = true;
 					
 					Character temp = sorted[x];
@@ -244,7 +224,7 @@ public class GWPlayer {
 			bottom = bottom - 1;
 		} while (hadSwap == true);
 		
-		for(int i = 0; i < 12; i++) {
+		for (int i = 0; i < 12; i++) {
 			charactersCharacteristics[i] = sorted[i];
 		}
 		
@@ -256,14 +236,12 @@ public class GWPlayer {
 	
 	
 	public boolean compareGuess(int x) {
-		//if(removed[x] != "null" && charactersCharacteristics[x] == correctFish) {
-		if(
-			charactersCharacteristics[x] == correctFish) {
+
+		if (charactersCharacteristics[x] == correctFish) {
 			file.println("Guessed correct character (" + charactersCharacteristics[x].getName() + ")");
 			file.println("--------------------------------------");
 			return true;
-		}
-		else {
+		} else {
 			file.println("Guessed incorrect character (" + charactersCharacteristics[x].getName() + ")");
 			file.println("--------------------------------------");
 			return false;
@@ -279,14 +257,11 @@ public class GWPlayer {
 	public String characteristicsDisplay(int i) {
 		
 		String output = "";
-		
-		//for(int i = 0; i < 12; i++) {
 			
 			output = "Name: " + charactersCharacteristics[i].getName() + "\nColour: " + charactersCharacteristics[i].getColour() +
 					"\nHat: " + charactersCharacteristics[i].getHat() + "\nSize : " + charactersCharacteristics[i].getSize() +
 					"\nMarkings: " + charactersCharacteristics[i].getMarkings();
 			
-		//}
 		
 		return output;
 	}

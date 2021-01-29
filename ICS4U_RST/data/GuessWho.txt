@@ -1,22 +1,46 @@
 Current characters
 
 Name: 
-Colour: red
+Colour: blue
 Hat: none
-Size : medium
+Size : large
 Markings: spots
 
 Name: 
-Colour: blue
+Colour: yellow
 Hat: baseball cap
 Size : small
 Markings: spots
 
 Name: 
-Colour: red
+Colour: blue
 Hat: fedora
-Size : medium
+Size : small
+Markings: stripes
+
+Name: 
+Colour: blue
+Hat: baseball cap
+Size : large
 Markings: spots
+
+Name: 
+Colour: yellow
+Hat: baseball cap
+Size : large
+Markings: spots
+
+Name: 
+Colour: yellow
+Hat: none
+Size : small
+Markings: stripes
+
+Name: 
+Colour: red
+Hat: none
+Size : medium
+Markings: stripes
 
 Name: 
 Colour: yellow
@@ -27,100 +51,41 @@ Markings: stripes
 Name: 
 Colour: blue
 Hat: baseball cap
+Size : small
+Markings: spots
+
+Name: 
+Colour: blue
+Hat: fedora
 Size : large
-Markings: stripes
+Markings: spots
+
+Name: 
+Colour: blue
+Hat: fedora
+Size : medium
+Markings: spots
 
 Name: 
 Colour: blue
 Hat: none
-Size : medium
-Markings: stripes
-
-Name: 
-Colour: red
-Hat: none
 Size : small
 Markings: spots
-
-Name: 
-Colour: yellow
-Hat: baseball cap
-Size : small
-Markings: stripes
-
-Name: 
-Colour: yellow
-Hat: fedora
-Size : medium
-Markings: stripes
-
-Name: 
-Colour: red
-Hat: fedora
-Size : small
-Markings: stripes
-
-Name: 
-Colour: yellow
-Hat: baseball cap
-Size : medium
-Markings: spots
-
-Name: 
-Colour: yellow
-Hat: fedora
-Size : large
-Markings: stripes
 --------------------------------------
-Clue: The fish does not have a baseball cap
---------------------------------------
-Removed : 
-Name: 
-Colour: red
-Hat: fedora
-Size : medium
-Markings: spots
+Clue: The fish does not have a fedora
 --------------------------------------
 Removed : 
 Name: 
 Colour: blue
-Hat: none
-Size : medium
-Markings: stripes
---------------------------------------
-Removed : 
-Name: 
-Colour: yellow
 Hat: fedora
-Size : medium
-Markings: stripes
---------------------------------------
-Removed : 
-Name: 
-Colour: yellow
-Hat: fedora
-Size : large
-Markings: stripes
---------------------------------------
-Removed : 
-Name: 
-Colour: yellow
-Hat: baseball cap
-Size : medium
-Markings: spots
---------------------------------------
-Removed : 
-Name: 
-Colour: yellow
-Hat: baseball cap
 Size : small
 Markings: stripes
 --------------------------------------
 Removed : 
 Name: 
-Colour: blue
-Hat: baseball cap
-Size : large
+Colour: yellow
+Hat: none
+Size : small
 Markings: stripes
 --------------------------------------
 Removed : 
@@ -132,8 +97,15 @@ Markings: spots
 --------------------------------------
 Removed : 
 Name: 
-Colour: red
+Colour: blue
 Hat: none
+Size : small
+Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: blue
+Hat: fedora
 Size : medium
 Markings: spots
 --------------------------------------
@@ -146,13 +118,39 @@ Markings: stripes
 --------------------------------------
 Removed : 
 Name: 
-Colour: red
-Hat: none
+Colour: yellow
+Hat: baseball cap
+Size : large
+Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: yellow
+Hat: baseball cap
 Size : small
 Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: blue
+Hat: none
+Size : large
+Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: blue
+Hat: baseball cap
+Size : large
+Markings: spots
+--------------------------------------
+Removed : 
+Name: 
+Colour: red
+Hat: none
+Size : medium
+Markings: stripes
 --------------------------------------
 Guessed incorrect character ()
---------------------------------------
-Sorted characters alphabetically
 --------------------------------------
 Game ended. The correct fish was 

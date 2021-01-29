@@ -81,7 +81,7 @@ public class GuessWhoFXGame extends Application {
     	lstClues.setPrefWidth(150);
     	lstClues.setPrefHeight(500);
     	
-    	Label lblCorrect = new Label("<-- This is what the correct \nfish looks like");
+    	Label lblCorrect = new Label("This is what the correct \nfish looks like");
     	lblCorrect.setFont(Font.font(SMALL_FONT));
    		root.add(lblCorrect, 4, 0, 2, 1);
     	
@@ -126,7 +126,7 @@ public class GuessWhoFXGame extends Application {
    		EventHandler<ActionEvent> buttonGuess = new EventHandler<ActionEvent>() { 
             public void handle(ActionEvent e) 
             { 
-            	if(isCorrect == false && removingCharacters < 12) {
+            	if (isCorrect == false && removingCharacters < 12) {
             	isGuessing = true;
             	FXDialog.print("Click a fish to guess");
             	}
@@ -146,8 +146,8 @@ public class GuessWhoFXGame extends Application {
  			    	FXDialog.print("Exception: " + error);
  			    	System.exit(0);
  			    } catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					FXDialog.print("Exception: " + e1);
+ 			    	System.exit(0);
 				}
             } 
         }; 
@@ -167,7 +167,7 @@ public class GuessWhoFXGame extends Application {
 	private void charactersSetup() throws FileNotFoundException {
 		
 		fishImagesDisplay = player.display();
-    	for(int i = 0; i < 12; i++) {
+    	for (int i = 0; i < 12; i++) {
    			imgFish[i] = new ImageView(getClass().getResource("/fish/" + fishImagesDisplay[i] + ".png").toString());
 		}
 		
@@ -175,7 +175,6 @@ public class GuessWhoFXGame extends Application {
 		
 		for (int row = 0; row < 8; row+=2) {
 			for (int col = 0; col < 6; col+=2) {
-				
 				TextInputDialog dialog = new TextInputDialog();
 				dialog.setTitle("Text Input Dialog");
 				dialog.setHeaderText("What would you like to name this character?");
@@ -185,8 +184,7 @@ public class GuessWhoFXGame extends Application {
 				Optional<String> result = dialog.showAndWait();
 				if (result.isPresent()){
 				    player.createCharactertistics(x, result.get());
-				}
-				else {
+				} else {
 					System.exit(0);
 				}
 				
@@ -223,75 +221,71 @@ public class GuessWhoFXGame extends Application {
 	
 	private void fishSelected(ActionEvent event, int x) throws FileNotFoundException {
 		
-		if(isGuessing == false) {
-
-		player.removed(x);
+		if (isGuessing == false) {
+			player.removed(x);
+			if (isRemoving == true) {
+				btnFish[x] = (Button) event.getSource();
 		
-		if(isRemoving == true) {
-			btnFish[x] = (Button) event.getSource();
+				ImageView temp = new ImageView(imgX);
+				temp.setFitWidth(75);
+				temp.setPreserveRatio(true);
 		
-			ImageView temp = new ImageView(imgX);
-			temp.setFitWidth(75);
-			temp.setPreserveRatio(true);
-		
-			btnFish[x].setGraphic(temp);
+				btnFish[x].setGraphic(temp);
 			
-			imgFish[x] = temp;
-			removingCharacters++;
-		}
-		}
-		else {
+				imgFish[x] = temp;
+				removingCharacters++;
+			}
+		} else {
 			isCorrect = player.compareGuess(x);
 			guess();
 		}
 		
-		if(removingCharacters == 11) {
+		if (removingCharacters == 11) {
 			FXDialog.print("You are now guessing the last fish");
 			isGuessing = true;
 			removingCharacters++;
 		}
-
 	}
 	
 	private void getClue() {
 		
-		if(isCorrect == false && removingCharacters < 12) {
-		Alert clueType = new Alert(AlertType.CONFIRMATION);
-		clueType.setTitle("Choose Clue Type Dialog");
-		clueType.setHeaderText("Please choose a characteristic to get a clue about");
+		if (isCorrect == false && removingCharacters < 12) {
+			Alert clueType = new Alert(AlertType.CONFIRMATION);
+			clueType.setTitle("Choose Clue Type Dialog");
+			clueType.setHeaderText("Please choose a characteristic to get a clue about");
 
-		ButtonType btnColour = new ButtonType("Colour");
-		ButtonType btnHat = new ButtonType("Hat");
-		ButtonType btnSize = new ButtonType("Size");
-		ButtonType btnMarkings = new ButtonType("Markings");
-		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+			ButtonType btnColour = new ButtonType("Colour");
+			ButtonType btnHat = new ButtonType("Hat");
+			ButtonType btnSize = new ButtonType("Size");
+			ButtonType btnMarkings = new ButtonType("Markings");
+			ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
 
-		clueType.getButtonTypes().setAll(btnColour, btnHat, btnSize, btnMarkings, buttonTypeCancel);
+			clueType.getButtonTypes().setAll(btnColour, btnHat, btnSize, btnMarkings, buttonTypeCancel);
 
-		Optional<ButtonType> result = clueType.showAndWait();
-		if (result.get() == btnColour){
-			lstClues.getItems().add(player.clueColour());
-			isRemoving = true;
-		} else if (result.get() == btnHat) {
-			lstClues.getItems().add(player.clueHat());
-			isRemoving = true;
-		} else if (result.get() == btnSize) {
-			lstClues.getItems().add(player.clueSize());
-			isRemoving = true;
-		} else if (result.get() == btnMarkings) {
-			lstClues.getItems().add(player.clueMarkings(clue));
-			clue++;
-			isRemoving = true;
-		} else {
-			Alert error = new Alert(AlertType.ERROR);
-			error.setTitle("Error Dialog");
-			error.setHeaderText("No clue type selected");
+			Optional<ButtonType> result = clueType.showAndWait();
+			if (result.get() == btnColour){
+				lstClues.getItems().add(player.clueColour());
+				isRemoving = true;
+			} else if (result.get() == btnHat) {
+				lstClues.getItems().add(player.clueHat());
+				isRemoving = true;
+			} else if (result.get() == btnSize) {
+				lstClues.getItems().add(player.clueSize());
+				isRemoving = true;
+			} else if (result.get() == btnMarkings) {
+				lstClues.getItems().add(player.clueMarkings(clue));
+				clue++;
+				isRemoving = true;
+			} else {
+				Alert error = new Alert(AlertType.ERROR);
+				error.setTitle("Error Dialog");
+				error.setHeaderText("No clue type selected");
 
-			error.showAndWait();
-		}
+				error.showAndWait();
+			}
 		}
 		
-		if(clueMessage == 0) {
+		if (clueMessage == 0) {
 			FXDialog.print("Click as many characters as you'd like to remove and then get another clue or make a guess! If it's helpful,"
 					+ " sort the fish alphabetically");
 			clueMessage++;
@@ -322,15 +316,13 @@ public class GuessWhoFXGame extends Application {
 	
 	private void guess() {
 		
-		if(isCorrect == false && removingCharacters == 12) {
+		if (isCorrect == false && removingCharacters == 12) {
 			FXDialog.print("That guess was incorrect. You lost!");
 			imgCorrectFish.setVisible(true);
 			questionMark.setVisible(false);
-		}
-		else if(isCorrect == false) {
+		} else if (isCorrect == false) {
 			FXDialog.print("That guess was incorrect. Get more clues or exit the game.");
-		}
-		else {
+		} else {
 			FXDialog.print("Congratulations! You guessed correctly! End the game to reset or to exit.");
 			imgCorrectFish.setVisible(true);
 			questionMark.setVisible(false);
@@ -345,7 +337,7 @@ public class GuessWhoFXGame extends Application {
 	private void end() throws Exception {
 		player.end();
 		
-		if(isCorrect == false) {
+		if (isCorrect == false) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
@@ -365,8 +357,7 @@ public class GuessWhoFXGame extends Application {
 		if (result.isPresent() && result.get() != "GuessWho"){
 			player.userFile(result.get());  
 			FXDialog.print("Game save outputted to " + result.get());
-		}
-		else{
+		} else{
 			FXDialog.print("Game save outputted to GuessWho");
 		}
 		
@@ -384,12 +375,11 @@ public class GuessWhoFXGame extends Application {
 		if (result1.get() == btnYes){
 			imgCorrectFish.setVisible(false);
 			
-			for(int i = 0; i < 12; i++) {
+			for (int i = 0; i < 12; i++) {
 				lblFish[i].setText("");
 				btnFish[i].setGraphic(null);
 				imgFish[i].setImage(null);
 				
-				//String[] fishImagesDisplay = new String [12];
 			}
 			
 			clue = 0;

@@ -8,38 +8,31 @@ public class Character {
 		
 		if (characteristics.charAt(0) == 'R') {
 			this.colour = "red";
-		}
-		else if (characteristics.charAt(0) == 'Y') {
+		} else if (characteristics.charAt(0) == 'Y') {
 			this.colour = "yellow";
-		}
-		else {
+		} else {
 			this.colour = "blue";
 		}
 		
 		if (characteristics.charAt(1) == 'N') {
 			this.hat = "none";
-		}
-		else if (characteristics.charAt(1) == 'F') {
+		} else if (characteristics.charAt(1) == 'F') {
 			this.hat = "fedora";
-		}
-		else {
+		} else {
 			this.hat = "baseball cap";
 		}
 		
 		if (characteristics.charAt(2) == 'S') {
 			this.size = "small";
-		}
-		else if (characteristics.charAt(2) == 'M') {
+		} else if (characteristics.charAt(2) == 'M') {
 			this.size = "medium";
-		}
-		else {
+		} else {
 			this.size = "large";
 		}
 		
 		if (characteristics.charAt(3) == 'L') {
 			this.markings = "stripes";
-		}
-		else {
+		} else {
 			this.markings = "spots";
 		}
 		

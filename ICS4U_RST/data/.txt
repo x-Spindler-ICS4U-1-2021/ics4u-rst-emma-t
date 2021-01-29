@@ -1,0 +1,76 @@
+Current characters
+
+Name: 
+Colour: red
+Hat: none
+Size : medium
+Markings: stripes
+
+Name: 
+Colour: yellow
+Hat: baseball cap
+Size : small
+Markings: spots
+
+Name: 
+Colour: blue
+Hat: none
+Size : medium
+Markings: spots
+
+Name: 
+Colour: red
+Hat: baseball cap
+Size : medium
+Markings: stripes
+
+Name: 
+Colour: yellow
+Hat: none
+Size : medium
+Markings: spots
+
+Name: 
+Colour: blue
+Hat: fedora
+Size : large
+Markings: spots
+
+Name: 
+Colour: yellow
+Hat: none
+Size : small
+Markings: stripes
+
+Name: 
+Colour: blue
+Hat: baseball cap
+Size : large
+Markings: stripes
+
+Name: 
+Colour: yellow
+Hat: none
+Size : medium
+Markings: stripes
+
+Name: 
+Colour: yellow
+Hat: fedora
+Size : small
+Markings: spots
+
+Name: 
+Colour: red
+Hat: none
+Size : small
+Markings: stripes
+
+Name: 
+Colour: red
+Hat: baseball cap
+Size : medium
+Markings: spots
+--------------------------------------
+Game ended. The correct fish was 
+null
