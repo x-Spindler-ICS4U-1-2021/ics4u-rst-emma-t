@@ -1,0 +1,73 @@
+Colour : RYB
+Hat : NFB
+Size : SML
+Markings : LS (L = lines = stripes)
+
+54 possible combinations
+
+✔️RNSL
+✔️RNSS
+✔️RNML
+✔️RNMS
+✔️RNLL
+✔️RNLS
+
+✔️RFSL
+✔️RFSS
+✔️RFML
+✔️RFMS
+✔️RFLL
+✔️RFLS
+
+✔️RBSL
+✔️RBSS
+✔️RBML
+✔️RBMS
+✔️RBLL
+✔️RBLS
+------------------
+56
+63
+-17
+
+✔️YNSL
+✔️YNSS
+✔️YNML
+✔️YNMS
+✔️YNLL
+✔️YNLS
+
+✔️YFSL
+✔️YFSS
+✔️YFML
+✔️YFMS
+✔️YFLL
+✔️YFLS
+
+✔️YBSL
+✔️YBSS
+✔️YBML
+✔️YBMS
+✔️YBLL
+✔️YBLS
+---------- hue = -130
+✔️BNSL
+✔️BNSS
+✔️BNML
+✔️BNMS
+✔️BNLL
+✔️BNLS
+
+✔️BFSL
+✔️BFSS
+✔️BFML
+✔️BFMS
+✔️BFLL
+✔️BFLS
+
+✔️BBSL
+✔️BBSS
+✔️BBML
+✔️BBMS
+✔️BBLL
+✔️BBLS
